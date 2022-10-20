@@ -16,12 +16,14 @@ public class TicTacToe {
     public void playAMove(char symbol, int row, int column) {
         if (symbol == nextPlayer && !isGameOver()) {
             if(row >= 0 && row <=2 && column >=0 && column <=2) {
-                if (board[row][column] != 'o' & board[row][column] != 'o') {
+                if (board[row][column] != 'x' && board[row][column] != 'o') {
                     board[row][column] = symbol;
                     if (nextPlayer == 'x') {
                         nextPlayer = 'o';
                     }
-                    else nextPlayer = 'x';
+                    else if (nextPlayer == 'o') {
+                        nextPlayer = 'x';
+                    }
                 }
             }
         }
@@ -34,6 +36,7 @@ public class TicTacToe {
         for (int i = 0; i < board.length; i ++) {
             if(board[i][0] == board[i][1] && board [i][0] == board[i][2] && board[i][0] != ' ') {
                 over = true;
+                winner = board[i][0];
                 break;
             }
         }
@@ -42,6 +45,7 @@ public class TicTacToe {
         for (int i = 0; i < board.length; i ++) {
             if(board[0][i] == board[1][i] && board [0][i] == board[2][i] && board[0][i] != ' ') {
                 over = true;
+                winner = board[0][i];
                 break;
             }
         }
@@ -52,7 +56,7 @@ public class TicTacToe {
         return over;
     }
 
-    public void getWinner() {
+    public char getWinner() {
         return winner;
     }
 

@@ -16,10 +16,10 @@ public class Main {
             game.playAMove(player, row, column);
         }
 
-        System.out.println("Congratulations " +game.whoIsTheWinner());
+        System.out.println("Congratulations " +game.getWinner());
 
         game.isGameOver(); // true/false
-        game.whoIsTheWinner();
+        game.getWinner();
 
         System.out.println(game);
         System.out.print(game.isGameOver());

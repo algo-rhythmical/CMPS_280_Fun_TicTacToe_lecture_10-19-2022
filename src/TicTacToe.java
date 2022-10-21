@@ -1,6 +1,7 @@
 public class TicTacToe {
     private char[][] board;
     private char nextPlayer;
+    private char firstPlayer;
     private char winner;
 
     TicTacToe() {
@@ -13,7 +14,15 @@ public class TicTacToe {
         nextPlayer = 'x';
     }
 
-    public void playAMove(char symbol, int row, int column) {
+    public char getNextPlayer() {
+        return nextPlayer;
+    }
+
+    public void playFirstMove(char symbol, int row, int column) {
+
+    }
+
+    public void playNextMove(char symbol, int row, int column) {
         if (symbol == nextPlayer && !isGameOver()) {
             if(row >= 0 && row <=2 && column >=0 && column <=2) {
                 if (board[row][column] != 'x' && board[row][column] != 'o') {
@@ -51,7 +60,10 @@ public class TicTacToe {
         }
 
         //check diagonals
-
+        if ((board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] != ' ') || (board[0][2] == board[1][1] && board[0][2] == board[2][0] && board[0][2] != ' ')){
+            over = true;
+            winner = board[1][1];
+        }
 
         return over;
     }
@@ -62,10 +74,10 @@ public class TicTacToe {
 
     public String toString() {
         return  "Game board: \n" +
-                board[0][0]+"|"+board[0][1]+"|"+board[0][2]+"\n" +
-                "-----\n" +
-                board[1][0]+"|"+board[1][1]+"|"+board[1][2]+"\n" +
-                "-----\n" +
-                board[2][0]+"|"+board[2][1]+"|"+board[2][2];
+                board[0][0]+" | "+board[0][1]+" | "+board[0][2]+"\n" +
+                "---------\n" +
+                board[1][0]+" | "+board[1][1]+" | "+board[1][2]+"\n" +
+                "---------\n" +
+                board[2][0]+" | "+board[2][1]+" | "+board[2][2];
     }
 }

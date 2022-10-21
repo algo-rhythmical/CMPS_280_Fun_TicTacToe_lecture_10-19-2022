@@ -34,7 +34,9 @@ public class TicTacToe {
                     }
 
                 }
+                else System.out.println("That spot already taken idiot!");
             }
+            else System.out.println("you dingball, that space is not an option, try again!");
         }
 
     }

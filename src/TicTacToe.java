@@ -1,7 +1,6 @@
 public class TicTacToe {
     private char[][] board;
     private char nextPlayer;
-    private char firstPlayer;
     private char winner;
 
     TicTacToe() {
@@ -18,12 +17,12 @@ public class TicTacToe {
         return nextPlayer;
     }
 
-    public void playFirstMove(char symbol, int row, int column) {
-
+    public void setnextPlayer(char symbol) {
+        this.nextPlayer = symbol;
     }
 
     public void playNextMove(char symbol, int row, int column) {
-        if (symbol == nextPlayer && !isGameOver()) {
+        if (!isGameOver()) {
             if(row >= 0 && row <=2 && column >=0 && column <=2) {
                 if (board[row][column] != 'x' && board[row][column] != 'o') {
                     board[row][column] = symbol;
@@ -33,6 +32,7 @@ public class TicTacToe {
                     else if (nextPlayer == 'o') {
                         nextPlayer = 'x';
                     }
+
                 }
             }
         }

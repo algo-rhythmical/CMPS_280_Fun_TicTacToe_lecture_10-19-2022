@@ -6,11 +6,10 @@ public class Main {
 
         //pick who wants to go first, 'x' or 'o' and plays first move. Automatic alternating of player: x and o
         System.out.println("\n"+game);
-        System.out.print("Who are you?(first player) 'x' or 'o': ");
+        System.out.print("First player, pick x or o: ");
         String playerStr = input.next();
         char player = playerStr.charAt(0);
-        game.setnextPlayer(player);
-
+        game.setNextPlayer(player);
         System.out.print("Enter move row (0-2): ");
         int row = input.nextInt();
         System.out.print("Enter move column (0-2): ");
@@ -18,7 +17,7 @@ public class Main {
         game.playNextMove(player, row, column);
 
         //While the game is not over, players alternate playing a move until a winner is declared.
-        while (!game.isGameOver()) {
+        while (!game.isGameWon()) {
             System.out.println("\n"+game);
             System.out.print("Next player: "+ "'"+game.getNextPlayer()+"'"+"\nEnter move row(0-2): ");
             row = input.nextInt();
@@ -27,14 +26,15 @@ public class Main {
             game.playNextMove(game.getNextPlayer(), row, column);
         }
 
+        //Game is over, display results
+        System.out.println("\n"+game);
+        if (game.getWinner() == 't') {
+            System.out.println("\n"+"We have a tie! Both players are winners and losers!");
+        }
+        else {
         System.out.println("\n"+"Congratulations player " +game.getWinner()+ "! You win!");
-
-        System.out.println(game);
+        }
         System.out.print("Game is over");
-
-
-
-
 
     }
 }

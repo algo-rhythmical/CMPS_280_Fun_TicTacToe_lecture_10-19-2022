@@ -6,23 +6,23 @@ public class TicTacToe {
     TicTacToe() {
         board = new char[3][3];
         for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
+            for (int j = 0; j < board[i].length; j++){
                 board[i][j] = ' ';
             }
         }
-        nextPlayer = 'x';
     }
 
     public char getNextPlayer() {
         return nextPlayer;
     }
 
-    public void setnextPlayer(char symbol) {
+    public void setNextPlayer(char symbol) {
         this.nextPlayer = symbol;
     }
 
+    //assigns a spot with 'x' or 'o' depending on turn.
     public void playNextMove(char symbol, int row, int column) {
-        if (!isGameOver()) {
+        if (!isGameWon()) {
             if(row >= 0 && row <=2 && column >=0 && column <=2) {
                 if (board[row][column] != 'x' && board[row][column] != 'o') {
                     board[row][column] = symbol;
@@ -34,15 +34,17 @@ public class TicTacToe {
                     }
 
                 }
-                else System.out.println("That spot already taken idiot!");
+                else System.out.println("That spot is already taken!");
             }
-            else System.out.println("you dingball, that space is not an option, try again!");
+            else System.out.println("That space is not an option, try again!");
         }
 
     }
 
-    public boolean isGameOver() {
+    //checks to see if there is a win or if there's a tie
+    public boolean isGameWon() {
         boolean over = false;
+
         //check rows
         for (int i = 0; i < board.length; i ++) {
             if(board[i][0] == board[i][1] && board [i][0] == board[i][2] && board[i][0] != ' ') {
@@ -67,19 +69,28 @@ public class TicTacToe {
             winner = board[1][1];
         }
 
+        //check for tie
+        if (!over && board[0][0] != ' ' && board[0][1] != ' ' && board[0][2] != ' ' && board[1][0] != ' ' && board[1][1] != ' ' && board[1][2] != ' ' &&
+                board[2][0] != ' ' && board[2][1] != ' ' && board[2][2] != ' ') {
+            over = true;
+            winner = 't';
+        }
+
         return over;
     }
+
 
     public char getWinner() {
         return winner;
     }
 
+    //gameboard display
     public String toString() {
-        return  "Game board: \n" +
-                board[0][0]+" | "+board[0][1]+" | "+board[0][2]+"\n" +
-                "---------\n" +
-                board[1][0]+" | "+board[1][1]+" | "+board[1][2]+"\n" +
-                "---------\n" +
-                board[2][0]+" | "+board[2][1]+" | "+board[2][2];
+        return  "   c0  c1  c2\n" +
+                "r0  "+board[0][0]+" | "+board[0][1]+" | "+board[0][2]+" "+"\n" +
+                "   -----------\n" +
+                "r1  "+board[1][0]+" | "+board[1][1]+" | "+board[1][2]+" "+"\n" +
+                "   -----------\n" +
+                "r2  "+board[2][0]+" | "+board[2][1]+" | "+board[2][2]+" "+"\n";
     }
 }

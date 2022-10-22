@@ -12,10 +12,10 @@ public class TicTacToe {
         }
     }
 
+    //setter and getter methods
     public char getNextPlayer() {
         return nextPlayer;
     }
-
     public void setNextPlayer(char symbol) {
         this.nextPlayer = symbol;
     }
@@ -79,12 +79,11 @@ public class TicTacToe {
         return over;
     }
 
-
     public char getWinner() {
         return winner;
     }
 
-    //gameboard display
+    //gameboard display with row/column labels
     public String toString() {
         return  "   c0  c1  c2\n" +
                 "r0  "+board[0][0]+" | "+board[0][1]+" | "+board[0][2]+" "+"\n" +
